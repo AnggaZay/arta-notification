@@ -7,7 +7,7 @@ export async function POST(request: Request) {
 
     // Data Fonnte lu yang tadi
     const token = 'fNbbV7sEdM81EWv44hMi'; 
-    const target = '087794274408'; 
+    const target = '6287794274408'; 
 
     const formData = new FormData();
     formData.append('target', target);
