@@ -109,7 +109,7 @@ export default function ArtaCreative() {
           Sesuatu yang besar akan timbul melalui hal hal kecil yang terus menerus dieksekusi, karena konsistensi akan menimbulkan hasil yang stabil.
         </p>
         <div className="flex justify-center gap-12">
-          <div><p className="text-4xl font-black text-slate-900">2</p><p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Founding Creators</p></div>
+          <div><p className="text-4xl font-black text-slate-900">High</p><p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Creativity</p></div>
           <div><p className="text-4xl font-black text-slate-900">100%</p><p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Internal Build</p></div>
         </div>
       </section>
