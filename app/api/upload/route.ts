@@ -17,12 +17,15 @@ export async function POST(req: Request) {
       scopes: ['https://www.googleapis.com/auth/drive.file'],
     };
 
-    // Pakai objek config resmi agar Google gak bingung
-    const auth = new google.auth.JWT({
+    // Kita buat objek config yang rapi sesuai mau-nya Google
+    const authOptions: any = {
       email: process.env.GOOGLE_DRIVE_CLIENT_EMAIL,
-      key: process.env.GOOGLE_DRIVE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-      scopes: ['https://www.googleapis.com/auth/drive.file'],
-    });
+      key: (process.env.GOOGLE_DRIVE_PRIVATE_KEY as string)?.replace(/\\n/g, '\n'),
+      scopes: ['https://www.googleapis.com/auth/drive'],
+    };
+
+    // Panggil JWT dengan satu objek tunggal
+    const auth = new google.auth.JWT(authOptions);
 
     const drive = google.drive({ version: 'v3', auth: auth as any });
     const buffer = Buffer.from(await file.arrayBuffer());
