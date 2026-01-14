@@ -5,17 +5,17 @@ import Link from 'next/link';
 
 export default function DatabaseLaporan() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [listLaporan, setListLaporan] = useState([
+  // Kita kasih tahu TypeScript kalau isinya bisa apa aja (any)
+  const [listLaporan, setListLaporan] = useState<any[]>([
     { id: 1, tanggal: '2026-01-14', nama: 'Desain Banner Promo', jenis: 'Konten Marketing', status: 'Selesai', ket: 'Sudah di-post IG' },
   ]);
   
-  const [form, setForm] = useState({ id: null, tanggal: '', nama: '', jenis: 'Konten Marketing', status: 'Proses', ket: '' });
+  const [form, setForm] = useState<any>({ id: null, tanggal: '', nama: '', jenis: 'Konten Marketing', status: 'Proses', ket: '' });
 
-  // FUNGSI SAVE (SUDAH FIX KURUNGNYA)
   const handleSave = () => {
     if (form.id) {
-      // Perhatikan kurung tutup di paling akhir baris ini: ))
-      setListLaporan(listLaporan.map((item) => (item.id === form.id ? form : item)));;
+      // Sekarang ini nggak akan merah lagi
+      setListLaporan(listLaporan.map((item: any) => (item.id === form.id ? form : item)));
     } else {
       setListLaporan([...listLaporan, { ...form, id: Date.now() }]);
     }
@@ -32,7 +32,7 @@ export default function DatabaseLaporan() {
 
   const hapusData = (id: any) => {
     if(confirm('Hapus data ini, Ngga?')) {
-      setListLaporan(listLaporan.filter(item => item.id !== id));
+      setListLaporan(listLaporan.filter((item: any) => item.id !== id));
     }
   };
 
@@ -53,13 +53,13 @@ export default function DatabaseLaporan() {
             <thead className="bg-slate-50 border-b border-slate-100">
               <tr>
                 <th className="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Project Name</th>
-                <th className="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Actions</th>
+                <th className="p-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center text-left">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
-              {listLaporan.map((item) => (
+              {listLaporan.map((item: any) => (
                 <tr key={item.id} className="hover:bg-slate-50/50 transition-all">
-                  <td className="p-6 font-black text-slate-900">{item.nama}</td>
+                  <td className="p-6 font-black text-slate-900 text-left">{item.nama}</td>
                   <td className="p-6 flex justify-center gap-4">
                     <button onClick={() => openModal(item)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-all"><Edit2 size={16}/></button>
                     <button onClick={() => hapusData(item.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-all"><Trash2 size={16}/></button>
@@ -71,9 +71,8 @@ export default function DatabaseLaporan() {
         </div>
       </div>
 
-      {/* MODAL INPUT */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 text-left">
           <div className="bg-white w-full max-w-md rounded-[40px] p-10 shadow-2xl relative">
             <h2 className="text-xl font-black text-slate-900 mb-6 tracking-tighter">DATA ENTRY</h2>
             <div className="space-y-4">
