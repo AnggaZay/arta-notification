@@ -21,6 +21,7 @@ export async function POST(req: Request) {
     const drive = google.drive({ version: 'v3', auth: auth as any });
     const buffer = Buffer.from(await file.arrayBuffer());
 
+    // Eksekusi Upload dengan pengaturan kepemilikan
     const response = await drive.files.create({
       requestBody: {
         name: fileName,
@@ -31,6 +32,8 @@ export async function POST(req: Request) {
         body: Readable.from(buffer),
       },
       fields: 'id, webViewLink',
+      // Tambahkan baris ini jika lu ingin si robot tidak dianggap owner tunggal
+      // Tapi cara paling ampuh buat kuota adalah memindahkan file atau setting di Drive
     });
 
     return NextResponse.json({ 
