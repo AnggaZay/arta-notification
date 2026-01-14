@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { ArrowLeft, Plus, Edit2, Trash2, Save, X, FileSpreadsheet } from 'lucide-react';
 import Link from 'next/link';
 import * as XLSX from 'xlsx'; // Taruh di paling atas
+import { db } from "@/app/lib/firebase";
+import { ref, push, set, onValue, remove } from "firebase/database";
+import { useEffect } from 'react';
 
 export default function DatabaseLaporan() {
     const exportToExcel = () => {
@@ -20,15 +23,52 @@ export default function DatabaseLaporan() {
   
   const [form, setForm] = useState<any>({ id: null, tanggal: '', nama: '', jenis: 'Konten Marketing', status: 'Proses', ket: '' });
 
-  const handleSave = () => {
-    if (form.id) {
-      // Sekarang ini nggak akan merah lagi
-      setListLaporan(listLaporan.map((item: any) => (item.id === form.id ? form : item)));
-    } else {
-      setListLaporan([...listLaporan, { ...form, id: Date.now() }]);
+  useEffect(() => {
+    const dbRef = ref(db, 'laporan_creative');
+    onValue(dbRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const formattedData = Object.values(data);
+        setListLaporan(formattedData);
+      } else {
+        setListLaporan([]);
+      }
+    });
+  }, []);
+
+  // Fungsi Simpan/Edit ke Firebase
+  const handleSave = async () => {
+    if (!form.nama) return alert("Nama project jangan kosong, Ngga!");
+
+    const dbRef = ref(db, 'laporan_creative');
+
+    try {
+      if (form.id) {
+        // Jika ada ID, berarti kita UPDATE data yang sudah ada
+        await set(ref(db, `laporan_creative/${form.id}`), form);
+      } else {
+        // Jika tidak ada ID, kita BUAT data baru (PUSH)
+        const newDataRef = push(dbRef);
+        const newId = newDataRef.key;
+        await set(newDataRef, { ...form, id: newId });
+      }
+      closeModal();
+    } catch (error) {
+      console.error("Gagal simpan ke Firebase:", error);
     }
-    closeModal();
   };
+
+  // Fungsi Hapus dari Firebase
+  const hapusData = async (id: any) => {
+    if (confirm('Yakin mau hapus data ini, Ngga?')) {
+      try {
+        await remove(ref(db, `laporan_creative/${id}`));
+      } catch (error) {
+        console.error("Gagal hapus:", error);
+      }
+    }
+  };
+  
 
   const openModal = (item: any = null) => {
     if (item) setForm(item);
@@ -37,12 +77,7 @@ export default function DatabaseLaporan() {
   };
 
   const closeModal = () => setIsModalOpen(false);
-
-  const hapusData = (id: any) => {
-    if(confirm('Hapus data ini, Ngga?')) {
-      setListLaporan(listLaporan.filter((item: any) => item.id !== id));
-    }
-  };
+  
 
   return (
     <div className="min-h-screen bg-slate-50 p-6 md:p-10 text-left">
