@@ -9,13 +9,7 @@ export async function POST(req: Request) {
     const fileName = (formData.get('fileName') as string) || 'upload_arta';
 
     if (!file) return NextResponse.json({ error: "File tidak ditemukan" }, { status: 400 });
-
-    // JURUS PAMUNGKAS: Masukkan config ke objek any dulu
-    const credentials: any = {
-      client_email: process.env.GOOGLE_DRIVE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_DRIVE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-      scopes: ['https://www.googleapis.com/auth/drive.file'],
-    };
+    
 
     // Kita buat objek config yang rapi sesuai mau-nya Google
     const authOptions: any = {
