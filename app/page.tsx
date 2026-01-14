@@ -25,14 +25,20 @@ export default function ArtaCreative() {
   return (
     <div className="bg-white text-slate-900 min-h-screen font-sans selection:bg-blue-100 overflow-x-hidden">
       {/* --- NAVBAR --- */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-lg border-b border-slate-100 z-50 px-5 md:px-8 py-4 flex justify-between items-center">
-        <div className="font-black text-lg md:text-xl tracking-tighter text-[#054fa0]">
-          ARTA<span className="text-red-600">.</span>CREATIVE
-        </div>
-        <a href="#contact" className="bg-[#054fa0] text-white px-4 py-2 rounded-full text-xs md:text-sm font-bold hover:bg-yellow-400 hover:text-[#054fa0] transition-all">
-          Contact
-        </a>
-      </nav>
+<nav className="fixed top-0 w-full bg-white/90 backdrop-blur-lg border-b border-slate-100 z-50 px-5 md:px-8 py-4 flex justify-between items-center">
+  <div className="font-black text-lg md:text-xl tracking-tighter text-[#054fa0]">
+    ARTA<span className="text-red-600">.</span>CREATIVE
+  </div>
+  <div className="flex gap-3">
+    {/* TOMBOL BARU KE LAPORAN */}
+    <a href="/laporan" className="border border-slate-200 text-slate-500 px-4 py-2 rounded-full text-xs md:text-sm font-bold hover:bg-slate-50 transition-all">
+      Admin
+    </a>
+    <a href="#contact" className="bg-[#054fa0] text-white px-4 py-2 rounded-full text-xs md:text-sm font-bold hover:bg-yellow-400 hover:text-[#054fa0] transition-all">
+      Contact
+    </a>
+  </div>
+</nav>
 
       {/* --- HERO SECTION --- */}
       <section className="pt-32 pb-16 md:pt-48 md:pb-24 px-6 text-center">
@@ -138,9 +144,15 @@ export default function ArtaCreative() {
       </section>
 
       {/* --- FOOTER --- */}
-      <footer className="py-10 border-t border-slate-100 text-center text-[10px] font-bold tracking-[0.3em] text-slate-400 uppercase px-6">
-        © 2026 ARTA CREATIVE • <span className="text-[#054fa0]">BPR Arta Utama</span>
-      </footer>
+<footer className="py-10 border-t border-slate-100 text-center px-6">
+  <p className="text-[10px] font-bold tracking-[0.3em] text-slate-400 uppercase mb-4">
+    © 2026 ARTA CREATIVE • <span className="text-[#054fa0]">BPR Arta Utama</span>
+  </p>
+  {/* PINTU RAHASIA */}
+  <a href="/laporan" className="text-[9px] text-slate-300 hover:text-[#054fa0] transition-colors uppercase tracking-widest font-bold">
+    Internal Dashboard Login
+  </a>
+</footer>
     </div>
   );
 }
