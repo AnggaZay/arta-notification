@@ -26,7 +26,7 @@ export default function ArtaCreative() {
     <div className="bg-white text-slate-900 min-h-screen font-sans selection:bg-blue-100">
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-50 px-8 py-4 flex justify-between items-center">
-        <div className="font-black text-xl tracking-tighter text-blue-600">ARTA.CORE</div>
+        <div className="font-black text-xl tracking-tighter text-blue-600">ARTA-UTAMA.CREATIVE</div>
         <div className="hidden md:flex gap-8 text-sm font-medium text-slate-500">
           <a href="#projek" className="hover:text-blue-600 transition-colors">Projects</a>
           <a href="#portfolio" className="hover:text-blue-600 transition-colors">Showcase</a>
@@ -38,17 +38,17 @@ export default function ArtaCreative() {
       {/* --- HERO SECTION --- */}
       <section className="pt-40 pb-20 px-6 text-center">
         <div className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest uppercase bg-blue-50 text-blue-600 rounded-full border border-blue-100">
-          Future-Forward Creative Hub
+          Tim Kreatif BPR Arta Utama
         </div>
         <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tight text-slate-950">
-          We build <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">digital engines</span>.
+          Membangun Karakter <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">Lewat Visual</span>.
         </h1>
         <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-          The creative backbone of BPR Arta Utama. We bridge the gap between financial stability and modern digital experiences.
+          Fokus pada progres kreatif dan menjaga karakter merk melalui visual, komunikasi dan feedback terhadap nasabah.
         </p>
         <div className="flex flex-col md:flex-row justify-center gap-4">
-          <a href="#projek" className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-blue-200 transition-all">View Active Stacks</a>
-          <a href="#portfolio" className="bg-slate-100 text-slate-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-200 transition-all">Recent Work</a>
+          <a href="#projek" className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-blue-200 transition-all">Lihat Proyek</a>
+          <a href="#portfolio" className="bg-slate-100 text-slate-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-200 transition-all">Portfolio</a>
         </div>
       </section>
 
@@ -57,26 +57,27 @@ export default function ArtaCreative() {
         <div className="flex justify-between items-end mb-12">
           <div>
             <h2 className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-2">Ongoing Projects</h2>
-            <p className="text-3xl font-bold tracking-tight">Active Development</p>
+            <p className="text-3xl font-bold tracking-tight">Proyek Aktif</p>
           </div>
         </div>
         <div className="grid md:grid-cols-2 gap-10">
           <div className="group p-10 rounded-3xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-white transition-all shadow-sm">
             <div className="w-12 h-12 bg-blue-600 rounded-xl mb-6 flex items-center justify-center text-white font-bold italic">T</div>
-            <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition-colors">Tabakery Hub</h3>
-            <p className="text-slate-500 leading-relaxed mb-6">Integrated management system for Arta's toast business venture. Refining real-time payment modules.</p>
+            <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition-colors">Pengelolaan Sosial Media</h3>
+            <p className="text-slate-500 leading-relaxed mb-6">Pengelolaan sosial media oleh Tim Kreatif, membuat konten dan menjaga tampilan merk pada karakter yang sesuai</p>
             <div className="flex gap-2">
-              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Next.js</span>
-              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Firebase</span>
+              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Konten Kreator</span>
+              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Desainer Grafis</span>
             </div>
           </div>
           <div className="group p-10 rounded-3xl bg-slate-50 border border-slate-100 hover:border-indigo-200 hover:bg-white transition-all shadow-sm">
             <div className="w-12 h-12 bg-indigo-600 rounded-xl mb-6 flex items-center justify-center text-white font-bold italic">R</div>
-            <h3 className="text-2xl font-bold mb-3 group-hover:text-indigo-600 transition-colors">RekaHub</h3>
-            <p className="text-slate-500 leading-relaxed mb-6">Central control ecosystem for our integrated digital business branches.</p>
+            <h3 className="text-2xl font-bold mb-3 group-hover:text-indigo-600 transition-colors">Banner UMKM</h3>
+            <p className="text-slate-500 leading-relaxed mb-6">Pembuatan banner UMKM secara gratis bagi UMKM.</p>
             <div className="flex gap-2">
-              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Vercel API</span>
-              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">UI/UX</span>
+              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Desainer Grafis</span>
+              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Konten Kreator</span>
+              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Marketing</span>
             </div>
           </div>
         </div>
@@ -103,9 +104,9 @@ export default function ArtaCreative() {
 
       {/* --- ABOUT US --- */}
       <section id="about" className="py-24 px-8 max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl font-black mb-8 tracking-tight">Two Minds. One Core.</h2>
+        <h2 className="text-4xl font-black mb-8 tracking-tight">Beraksi , Berkreasi</h2>
         <p className="text-xl text-slate-500 leading-relaxed mb-12">
-          Operating as the creative heart of BPR Arta Utama, we’re a lean two-person power unit. We handle everything from high-conversion visual content to complex backend architecture. No fluff, just results.
+          Sesuatu yang besar akan timbul melalui hal hal kecil yang terus menerus dieksekusi, karena konsistensi akan menimbulkan hasil yang stabil.
         </p>
         <div className="flex justify-center gap-12">
           <div><p className="text-4xl font-black text-slate-900">2</p><p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Founding Creators</p></div>
@@ -136,7 +137,7 @@ export default function ArtaCreative() {
 
       {/* --- FOOTER --- */}
       <footer className="py-12 border-t border-slate-100 text-center text-slate-400 text-xs font-bold tracking-widest uppercase">
-        © 2026 ARTA CREATIVE • BUILT ON VERCEL STACK
+        © 2026 ARTA CREATIVE • BPR Arta Utama
       </footer>
     </div>
   );
