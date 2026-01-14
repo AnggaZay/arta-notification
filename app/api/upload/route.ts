@@ -17,16 +17,12 @@ export async function POST(req: Request) {
       scopes: ['https://www.googleapis.com/auth/drive.file'],
     };
 
-    // JURUS DEWA: Masukin semua ke array any dulu biar TypeScript nyerah
-    const authArgs: any[] = [
-      credentials.client_email,
-      null,
-      credentials.private_key,
-      credentials.scopes
-    ];
-
-    // Panggil pake spread operator (...)
-    const auth = new (google.auth.JWT as any)(...authArgs);
+    // Pakai objek config resmi agar Google gak bingung
+    const auth = new google.auth.JWT({
+      email: process.env.GOOGLE_DRIVE_CLIENT_EMAIL,
+      key: process.env.GOOGLE_DRIVE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      scopes: ['https://www.googleapis.com/auth/drive.file'],
+    });
 
     const drive = google.drive({ version: 'v3', auth: auth as any });
     const buffer = Buffer.from(await file.arrayBuffer());
