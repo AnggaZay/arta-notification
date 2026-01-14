@@ -11,12 +11,7 @@ export default function DatabaseLaporan() {
   XLSX.utils.book_append_sheet(workbook, worksheet, "Laporan Arta");
   XLSX.writeFile(workbook, "Laporan_Kinerja_Creative.xlsx");
 };
-<button 
-  onClick={exportToExcel} 
-  className="flex items-center gap-2 bg-green-600 text-white px-5 py-2 rounded-xl font-bold text-xs uppercase hover:bg-green-700 transition-all mb-4"
->
-  <FileSpreadsheet size={16} /> Export Excel
-</button>
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Kita kasih tahu TypeScript kalau isinya bisa apa aja (any)
   const [listLaporan, setListLaporan] = useState<any[]>([
@@ -60,6 +55,12 @@ export default function DatabaseLaporan() {
             Add Report
           </button>
         </div>
+<button 
+  onClick={exportToExcel} 
+  className="flex items-center gap-2 bg-green-600 text-white px-5 py-2 rounded-xl font-bold text-xs uppercase hover:bg-green-700 transition-all mb-4"
+>
+  <FileSpreadsheet size={16} /> Export Excel
+</button>
 
         <div className="bg-white rounded-[32px] border border-slate-100 shadow-sm overflow-hidden">
           <table className="w-full">
