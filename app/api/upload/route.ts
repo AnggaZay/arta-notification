@@ -11,12 +11,12 @@ export async function POST(req: Request) {
     if (!file) return NextResponse.json({ error: "File tidak ditemukan" }, { status: 400 });
 
 
-    // Pakai satu objek saja, jangan dipisah parameternya
+    // Gunakan satu objek sesuai standar terbaru Google API
     const auth = new google.auth.JWT({
       email: process.env.GOOGLE_DRIVE_CLIENT_EMAIL,
       key: process.env.GOOGLE_DRIVE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-      scopes: ['https://www.googleapis.com/auth/drive'], // Scope full akses
-    } as any);
+      scopes: ['https://www.googleapis.com/auth/drive'],
+    } as any); // <--- Mantra sakti biar VS Code diem
 
     const drive = google.drive({ version: 'v3', auth: auth as any });
     const buffer = Buffer.from(await file.arrayBuffer());
