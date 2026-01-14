@@ -1,9 +1,16 @@
 'use client';
 import { useState } from 'react';
-import { ArrowLeft, Plus, Edit2, Trash2, Save, X } from 'lucide-react';
+import { ArrowLeft, Plus, Edit2, Trash2, Save, X, FileSpreadsheet } from 'lucide-react';
 import Link from 'next/link';
+import * as XLSX from 'xlsx'; // Taruh di paling atas
 
 export default function DatabaseLaporan() {
+    const exportToExcel = () => {
+  const worksheet = XLSX.utils.json_to_sheet(listLaporan);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Laporan Arta");
+  XLSX.writeFile(workbook, "Laporan_Kinerja_Creative.xlsx");
+};
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Kita kasih tahu TypeScript kalau isinya bisa apa aja (any)
   const [listLaporan, setListLaporan] = useState<any[]>([
@@ -35,7 +42,12 @@ export default function DatabaseLaporan() {
       setListLaporan(listLaporan.filter((item: any) => item.id !== id));
     }
   };
-
+<button 
+  onClick={exportToExcel} 
+  className="flex items-center gap-2 bg-green-600 text-white px-5 py-2 rounded-xl font-bold text-xs uppercase hover:bg-green-700 transition-all mb-4"
+>
+  <FileSpreadsheet size={16} /> Export Excel
+</button>
   return (
     <div className="min-h-screen bg-slate-50 p-6 md:p-10 text-left">
       <div className="max-w-4xl mx-auto">

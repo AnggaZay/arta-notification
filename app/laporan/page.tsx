@@ -1,6 +1,14 @@
 'use client';
 import { useSession } from "next-auth/react";
-import { LayoutDashboard, PlusCircle, BarChart3, TrendingUp, CheckCircle2, Clock } from 'lucide-react';
+import { 
+  LayoutDashboard, 
+  PlusCircle, 
+  BarChart3, 
+  TrendingUp, 
+  CheckCircle2, 
+  Clock, 
+  FileText // <--- Tambahin ini Ngga!
+} from 'lucide-react';
 import Link from 'next/link';
 
 export default function DashboardKinerja() {
@@ -57,18 +65,15 @@ export default function DashboardKinerja() {
 
         {/* NAVIGATION CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* MENU INPUT */}
-          <Link href="/laporan/input" className="group relative overflow-hidden bg-[#054fa0] p-10 rounded-[40px] shadow-2xl shadow-blue-900/20 transition-all hover:scale-[1.02]">
-            <div className="relative z-10 text-white">
-              <PlusCircle size={40} className="mb-6 text-yellow-400" />
-              <h2 className="text-3xl font-black mb-2">Input Progres</h2>
-              <p className="text-blue-200 text-sm italic mb-8">Tambahkan aktivitas desain harian lu ke sistem.</p>
-              <span className="bg-white/10 px-5 py-2 rounded-full text-[10px] font-black tracking-widest uppercase">Open Entry Form</span>
-            </div>
-            <div className="absolute -right-10 -bottom-10 text-white/5 rotate-12 transition-transform group-hover:scale-110">
-              <PlusCircle size={200} />
-            </div>
-          </Link>
+          {/* MENU DATABASE (Dulu namanya Input) */}
+<Link href="/laporan/input" className="group relative overflow-hidden bg-[#054fa0] p-10 rounded-[40px] shadow-2xl shadow-blue-900/20 transition-all hover:scale-[1.02]">
+  <div className="relative z-10 text-white">
+    <FileText size={40} className="mb-6 text-yellow-400" />
+    <h2 className="text-3xl font-black mb-2 text-white">Database Laporan</h2>
+    <p className="text-blue-200 text-sm italic mb-8">Lihat detail, edit, hapus, dan kelola semua data laporan kerja.</p>
+    <span className="bg-white/10 px-5 py-2 rounded-full text-[10px] font-black tracking-widest uppercase">Manage Database</span>
+  </div>
+</Link>
 
           {/* MENU ANALYTICS */}
           <Link href="/laporan/kinerja" className="group relative overflow-hidden bg-white p-10 rounded-[40px] border border-slate-100 shadow-xl transition-all hover:scale-[1.02]">
