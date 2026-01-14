@@ -53,15 +53,26 @@ export default function DatabaseLaporan() {
     formData.append('file', file);
     formData.append('fileName', `${Date.now()}_${file.name}`);
 
+    console.log("Sedang mencoba upload ke API...");
+
     try {
-      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      const res = await fetch('/api/upload', { 
+        method: 'POST', 
+        body: formData 
+      });
+
       const data = await res.json();
-      if (data.link) {
+
+      if (res.ok && data.link) {
         setForm({ ...form, linkFoto: data.link });
-        alert("Foto berhasil masuk Drive!");
+        alert("Mantap Ngga! Foto berhasil masuk Drive.");
+      } else {
+        console.error("Error dari API:", data.error);
+        alert(`Gagal: ${data.error || "Terjadi kesalahan di server"}`);
       }
     } catch (err) {
-      alert("Gagal upload ke Drive!");
+      console.error("Error Fetch:", err);
+      alert("Koneksi ke API gagal!");
     } finally {
       setUploading(false);
     }
