@@ -27,7 +27,7 @@ export default function ArtaCreative() {
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-50 px-8 py-4 flex justify-between items-center">
         <div className="font-black text-xl tracking-tighter text-[#054fa0]">
-          ARTA-UTAMA<span className="text-red-600">.</span>CREATIVE
+          ARTA.<span className="text-red-600">.</span>Creative
         </div>
         <div className="hidden md:flex gap-8 text-sm font-medium text-slate-500">
           <a href="#projek" className="hover:text-[#054fa0] transition-colors">Projects</a>
@@ -40,7 +40,7 @@ export default function ArtaCreative() {
       {/* --- HERO SECTION --- */}
       <section className="pt-40 pb-20 px-6 text-center">
         <div className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest uppercase bg-blue-50 text-[#054fa0] rounded-full border border-blue-100">
-          Tim Kreatif BPR Arta Utama
+          Official Creative Hub of BPR Arta Utama
         </div>
         <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tight text-slate-950">
           Membangun Karakter <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#054fa0] to-blue-500">Lewat Visual</span>.
