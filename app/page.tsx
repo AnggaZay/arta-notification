@@ -27,7 +27,7 @@ export default function ArtaCreative() {
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-50 px-8 py-4 flex justify-between items-center">
         <div className="font-black text-xl tracking-tighter text-[#054fa0]">
-          ARTA.<span className="text-red-600">.</span>Creative
+          ARTA<span className="text-red-600">.</span>Creative
         </div>
         <div className="hidden md:flex gap-8 text-sm font-medium text-slate-500">
           <a href="#projek" className="hover:text-[#054fa0] transition-colors">Projects</a>
