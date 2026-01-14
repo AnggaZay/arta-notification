@@ -6,93 +6,138 @@ export default function ArtaCreative() {
   const [status, setStatus] = useState('');
 
   const kirimNotif = async () => {
-    if (!pesan) return alert("Tulis pesan dulu, Ngga!");
-    setStatus('⌛ Mengirim...');
+    if (!pesan) return alert("Please enter your message first.");
+    setStatus('⌛ Processing request...');
     try {
       const res = await fetch('/api/send-wa', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: `Request Kreatif Baru: ${pesan}` }),
+        body: JSON.stringify({ message: `New Tech Request: ${pesan}` }),
       });
       const data = await res.json();
       if (data.success) {
-        setStatus('✅ Notif terkirim ke Tim Kreatif!');
+        setStatus('✅ Message synced to Creative Team.');
         setPesan('');
-      } else { setStatus('❌ Gagal kirim'); }
-    } catch (err) { setStatus('❌ Error API'); }
+      } else { setStatus('❌ Sync failed.'); }
+    } catch (err) { setStatus('❌ Connection error.'); }
   };
 
   return (
-    <div className="bg-black text-white min-h-screen font-sans selection:bg-green-500">
+    <div className="bg-white text-slate-900 min-h-screen font-sans selection:bg-blue-100">
+      {/* --- NAVBAR --- */}
+      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-50 px-8 py-4 flex justify-between items-center">
+        <div className="font-black text-xl tracking-tighter text-blue-600">ARTA.CORE</div>
+        <div className="hidden md:flex gap-8 text-sm font-medium text-slate-500">
+          <a href="#projek" className="hover:text-blue-600 transition-colors">Projects</a>
+          <a href="#portfolio" className="hover:text-blue-600 transition-colors">Showcase</a>
+          <a href="#about" className="hover:text-blue-600 transition-colors">Team</a>
+        </div>
+        <a href="#contact" className="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-600 transition-all">Start a Project</a>
+      </nav>
+
       {/* --- HERO SECTION --- */}
-      <section className="h-screen flex flex-col justify-center items-center text-center px-4 border-b border-zinc-800">
-        <h1 className="text-6xl font-black mb-4 tracking-tighter italic">ARTA CREATIVE</h1>
-        <p className="text-zinc-400 max-w-lg">Digital engine of BPR Arta Utama. Kami bukan cuma desain gambar, kami bangun sistem.</p>
-        <div className="mt-8 flex gap-4">
-          <a href="#projek" className="bg-white text-black px-6 py-2 rounded-full font-bold">Cek Projek</a>
-          <a href="#contact" className="border border-white px-6 py-2 rounded-full">Hubungi Kami</a>
+      <section className="pt-40 pb-20 px-6 text-center">
+        <div className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest uppercase bg-blue-50 text-blue-600 rounded-full border border-blue-100">
+          Future-Forward Creative Hub
+        </div>
+        <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tight text-slate-950">
+          We build <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">digital engines</span>.
+        </h1>
+        <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+          The creative backbone of BPR Arta Utama. We bridge the gap between financial stability and modern digital experiences.
+        </p>
+        <div className="flex flex-col md:flex-row justify-center gap-4">
+          <a href="#projek" className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-blue-200 transition-all">View Active Stacks</a>
+          <a href="#portfolio" className="bg-slate-100 text-slate-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-200 transition-all">Recent Work</a>
         </div>
       </section>
 
-      {/* --- PROJEK (ON-GOING) --- */}
-      <section id="projek" className="py-20 px-8 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-10 text-green-500"># Current Projects</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="border border-zinc-800 p-6 rounded-2xl bg-zinc-900/50">
-            <span className="text-xs bg-green-500 text-black px-2 py-1 rounded-full font-bold">DEVELOPMENT</span>
-            <h3 className="text-xl font-bold mt-4">Tabakery Hub</h3>
-            <p className="text-zinc-400 mt-2 text-sm">Sistem manajemen terintegrasi untuk bisnis toast Arta. Sedang optimasi modul pembayaran.</p>
+      {/* --- PROJEK (ACTIVE STACKS) --- */}
+      <section id="projek" className="py-24 px-8 max-w-7xl mx-auto">
+        <div className="flex justify-between items-end mb-12">
+          <div>
+            <h2 className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-2">Ongoing Projects</h2>
+            <p className="text-3xl font-bold tracking-tight">Active Development</p>
           </div>
-          <div className="border border-zinc-800 p-6 rounded-2xl bg-zinc-900/50">
-            <span className="text-xs bg-blue-500 text-white px-2 py-1 rounded-full font-bold">BUILDING</span>
-            <h3 className="text-xl font-bold mt-4">RekaHub</h3>
-            <p className="text-zinc-400 mt-2 text-sm">Control hub untuk seluruh ekosistem bisnis digital kami. Fokus pada landing page utama.</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="group p-10 rounded-3xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-white transition-all shadow-sm">
+            <div className="w-12 h-12 bg-blue-600 rounded-xl mb-6 flex items-center justify-center text-white font-bold italic">T</div>
+            <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition-colors">Tabakery Hub</h3>
+            <p className="text-slate-500 leading-relaxed mb-6">Integrated management system for Arta's toast business venture. Refining real-time payment modules.</p>
+            <div className="flex gap-2">
+              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Next.js</span>
+              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Firebase</span>
+            </div>
+          </div>
+          <div className="group p-10 rounded-3xl bg-slate-50 border border-slate-100 hover:border-indigo-200 hover:bg-white transition-all shadow-sm">
+            <div className="w-12 h-12 bg-indigo-600 rounded-xl mb-6 flex items-center justify-center text-white font-bold italic">R</div>
+            <h3 className="text-2xl font-bold mb-3 group-hover:text-indigo-600 transition-colors">RekaHub</h3>
+            <p className="text-slate-500 leading-relaxed mb-6">Central control ecosystem for our integrated digital business branches.</p>
+            <div className="flex gap-2">
+              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">Vercel API</span>
+              <span className="px-3 py-1 bg-white border border-slate-200 rounded-md text-xs font-mono">UI/UX</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* --- PORTFOLIO (RESULTS) --- */}
-      <section id="portfolio" className="py-20 bg-zinc-950 px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10">Portfolio Showcase</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {/* Lu tinggal ganti src gambarnya nanti */}
-            <div className="aspect-square bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center text-zinc-500 italic text-xs border border-zinc-700">Content Instagram BPR</div>
-            <div className="aspect-square bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center text-zinc-500 italic text-xs border border-zinc-700">Branding Arta Utama</div>
-            <div className="aspect-square bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center text-zinc-500 italic text-xs border border-zinc-700">UI/UX Design Projects</div>
+      {/* --- PORTFOLIO --- */}
+      <section id="portfolio" className="py-24 bg-slate-50 border-y border-slate-100">
+        <div className="max-w-7xl mx-auto px-8">
+          <h2 className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-2 text-center">Our Portfolio</h2>
+          <p className="text-3xl font-bold tracking-tight text-center mb-16">Selected Works</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="aspect-video bg-white rounded-2xl border border-slate-200 flex flex-col items-center justify-center p-8 text-center shadow-sm hover:shadow-md transition-all">
+                <div className="w-full h-32 bg-slate-50 rounded-lg mb-4 flex items-center justify-center">
+                  <span className="text-slate-300 text-xs italic font-mono">Image Placeholder</span>
+                </div>
+                <h4 className="font-bold text-slate-800">Visual Identity {i}</h4>
+                <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-bold text-blue-600">Branding • 2026</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* --- ABOUT US --- */}
-      <section className="py-20 px-8 max-w-4xl mx-auto text-center border-t border-zinc-800">
-        <h2 className="text-3xl font-bold mb-6">The Dynamic Duo</h2>
-        <p className="text-zinc-400 leading-relaxed">
-          Arta Creative adalah tim kecil dengan impian besar di BPR Arta Utama. Cuma ada dua orang di balik layar, 
-          tapi kami menghandle semuanya mulai dari konten harian sampai sistem backend yang kompleks.
+      <section id="about" className="py-24 px-8 max-w-4xl mx-auto text-center">
+        <h2 className="text-4xl font-black mb-8 tracking-tight">Two Minds. One Core.</h2>
+        <p className="text-xl text-slate-500 leading-relaxed mb-12">
+          Operating as the creative heart of BPR Arta Utama, we’re a lean two-person power unit. We handle everything from high-conversion visual content to complex backend architecture. No fluff, just results.
         </p>
+        <div className="flex justify-center gap-12">
+          <div><p className="text-4xl font-black text-slate-900">2</p><p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Founding Creators</p></div>
+          <div><p className="text-4xl font-black text-slate-900">100%</p><p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Internal Build</p></div>
+        </div>
       </section>
 
-      {/* --- CONTACT (WA NOTIF) --- */}
-      <section id="contact" className="py-20 px-8 bg-green-500 text-black">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-black mb-4">Butuh Bantuan Kreatif?</h2>
-          <p className="mb-8 font-medium">Tulis pesanmu, tim kami akan langsung dapet notif WA!</p>
+      {/* --- CONTACT (MODERN FORM) --- */}
+      <section id="contact" className="py-24 px-8">
+        <div className="max-w-3xl mx-auto bg-slate-950 p-12 rounded-[40px] text-center shadow-2xl">
+          <h2 className="text-4xl font-black mb-4 text-white">Start a conversation.</h2>
+          <p className="text-slate-400 mb-10">Send a request directly to our team's workspace.</p>
           <textarea 
-            className="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-black bg-white text-black mb-4 h-32"
-            placeholder="Contoh: Ngga, tolong buatin desain buat promo deposito dong..."
+            className="w-full p-6 rounded-2xl border border-slate-800 bg-slate-900 text-white mb-6 h-40 focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder:text-slate-600"
+            placeholder="Tell us about your project or request..."
             value={pesan}
             onChange={(e) => setPesan(e.target.value)}
           />
           <button 
             onClick={kirimNotif}
-            className="bg-black text-white px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform"
+            className="w-full md:w-auto bg-blue-600 text-white px-12 py-5 rounded-2xl font-black text-lg hover:bg-blue-500 transition-all active:scale-95 shadow-xl shadow-blue-900/20"
           >
-            Kirim Request via WA
+            Deploy Message
           </button>
-          <p className="mt-4 text-sm font-bold italic">{status}</p>
+          <p className="mt-6 text-sm font-bold tracking-widest text-blue-400 uppercase italic">{status}</p>
         </div>
       </section>
+
+      {/* --- FOOTER --- */}
+      <footer className="py-12 border-t border-slate-100 text-center text-slate-400 text-xs font-bold tracking-widest uppercase">
+        © 2026 ARTA CREATIVE • BUILT ON VERCEL STACK
+      </footer>
     </div>
   );
 }
