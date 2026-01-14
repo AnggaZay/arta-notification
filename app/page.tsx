@@ -37,7 +37,7 @@ export default function ArtaCreative() {
       {/* --- HERO SECTION --- */}
       <section className="pt-32 pb-16 md:pt-48 md:pb-24 px-6 text-center">
         <div className="inline-block px-3 py-1 mb-6 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase bg-blue-50 text-[#054fa0] rounded-full border border-blue-100">
-          Official Creative Hub
+          Official Creative Hub of BPR Arta Utama
         </div>
         <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tight text-slate-950 leading-[1.1]">
           Membangun Karakter <br className="hidden md:block" />
