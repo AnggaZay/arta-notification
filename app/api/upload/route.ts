@@ -6,27 +6,25 @@ export async function POST(req: Request) {
   try {
     const formData = await req.formData();
     const file = formData.get('file') as Blob;
-    const fileName = (formData.get('fileName') as string) || `upload_arta_${Date.now()}`;
+    const fileName = (formData.get('fileName') as string) || `arta_${Date.now()}`;
 
-    if (!file) {
-      return NextResponse.json({ error: "File tidak ditemukan" }, { status: 400 });
-    }
+    if (!file) return NextResponse.json({ error: "File kosong" }, { status: 400 });
 
-    // 1. KONFIGURASI AUTH (Bungkam TypeScript & Google API Friendly)
+    // 1. AUTH - Pakai satu objek biar VS Code ijo
     const auth = new google.auth.JWT({
       email: process.env.GOOGLE_DRIVE_CLIENT_EMAIL,
       key: process.env.GOOGLE_DRIVE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-      scopes: ['https://www.googleapis.com/auth/drive'], // Full scope agar bisa transfer ownership
+      scopes: ['https://www.googleapis.com/auth/drive.file'], // Pakai scope .file aja biar lebih enteng
     } as any);
 
     const drive = google.drive({ version: 'v3', auth });
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    // 2. EKSEKUSI UPLOAD KE FOLDER TUJUAN
+    // 2. LANGSUNG NAMPEL - Tanpa drama transfer quota
     const response = await drive.files.create({
       requestBody: {
         name: fileName,
-        parents: [process.env.GOOGLE_DRIVE_FOLDER_ID!],
+        parents: [process.env.GOOGLE_DRIVE_FOLDER_ID!], // Langsung tunjuk folder tujuan
       },
       media: {
         mimeType: file.type,
@@ -35,38 +33,16 @@ export async function POST(req: Request) {
       fields: 'id, webViewLink',
     });
 
-    const fileId = response.data.id;
-
-    // 3. JURUS SAKTI: PINDAHKAN HAK MILIK KE EMAIL UTAMA LU
-    // Ini biar kuota 2TB lu yang kepake, bukan kuota robot
-    if (fileId) {
-      try {
-        await drive.permissions.create({
-          fileId: fileId,
-          transferOwnership: true,
-          moveToNewOwnersRoot: true,
-          requestBody: {
-            role: 'owner',
-            type: 'user',
-            emailAddress: 'anggazaidan4@gmail.com', // Email owner Drive lu
-          },
-        });
-      } catch (permError: any) {
-        console.error("PERM_ERROR (Ignore if file uploaded):", permError.message);
-        // Kadang transfer ownership gagal di folder biasa, tapi file biasanya tetep mendarat.
-      }
-    }
-
     return NextResponse.json({ 
-      id: fileId, 
+      id: response.data.id, 
       link: response.data.webViewLink 
     });
 
   } catch (error: any) {
-    console.error("DRIVE_ERROR_LOG:", error);
+    console.error("DRIVE_ERROR:", error.message);
     return NextResponse.json({ 
       error: error.message,
-      detail: error.response?.data || "Cek Vercel Logs" 
+      detail: "Cek apakah robot sudah jadi Editor di folder Drive lu" 
     }, { status: 500 });
   }
 }
