@@ -17,13 +17,16 @@ export async function POST(req: Request) {
       scopes: ['https://www.googleapis.com/auth/drive.file'],
     };
 
-    // Panggil JWT dengan objek yang sudah kita "jinakkan"
-    const auth = new google.auth.JWT(
-      credentials.client_email as string,
-      null as any,
-      (credentials.private_key as string),
-      (credentials.scopes as string[])
-    );
+    // JURUS DEWA: Masukin semua ke array any dulu biar TypeScript nyerah
+    const authArgs: any[] = [
+      credentials.client_email,
+      null,
+      credentials.private_key,
+      credentials.scopes
+    ];
+
+    // Panggil pake spread operator (...)
+    const auth = new (google.auth.JWT as any)(...authArgs);
 
     const drive = google.drive({ version: 'v3', auth: auth as any });
     const buffer = Buffer.from(await file.arrayBuffer());
